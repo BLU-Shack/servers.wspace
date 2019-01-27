@@ -1,6 +1,6 @@
 {
   "name": "servers.wspace",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Connect with the serverlist.space WebSocket feature.",
   "main": "src/",
   "types": "typings/index.d.ts",
