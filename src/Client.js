@@ -60,6 +60,7 @@ class Client extends EventEmitter {
 
 		/**
 		 * The WebSocket itself.
+		 * @type {WebSocket}
 		 */
 		this.ws = new WebSocket('wss://gateway.serverlist.space')
 			.on('open', () => {
@@ -212,6 +213,8 @@ class Client extends EventEmitter {
 	 */
 	close() {
 		this._debug('Closing the WebSocket Gateway...');
+		this.emit(Events.CLOSE, { code: 0, message: 'Client#close()' });
+		clearInterval(this.int);
 		return this.ws.close();
 	}
 }
