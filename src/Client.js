@@ -34,7 +34,7 @@ class Client extends EventEmitter {
 		 * ClientOptions.
 		 * @type {ClientOptions}
 		 */
-		this.options = this.edit(Object.assign(ClientOptions, options), true);
+		this.options = this.edit(options, true);
 
 		/**
 		 * The time of when the Client successfully establishes a stable connection to the Gateway.
@@ -83,17 +83,14 @@ class Client extends EventEmitter {
 				this.ws.ping(Date.now());
 
 				this.int = setInterval(() => {
-					if (this.ws.readyState !== this.ws.OPEN) {
-						this._debug(this.ws.readyState, this.ws.OPEN);
-						return clearInterval(this.int);
-					}
+					if (this.ws.readyState !== this.ws.OPEN) return clearInterval(this.int);
 					this.ws.send(JSON.stringify({
 						op: 1,
 						t: Date.now(),
 						d: {}
 					}));
 					this.ws.ping(Date.now());
-					this._debug('WebSocket Ping and Heartbeat Check Performed.');
+					this._debug('WebSocket Ping and Heartbeat Check Performed');
 				}, 45e3);
 			})
 			.on('message', async data => {
@@ -211,6 +208,14 @@ class Client extends EventEmitter {
 		if (opts.tokens.some(i => typeof i !== 'string')) throw new TypeError('options.tokens requires all values to be a string.');
 		if (!Array.isArray(options.ignoreEvents)) throw new TypeError('options.ignoreEvents must be an array.');
 		if (opts.ignoreEvents.some(i => typeof i !== 'number')) throw new TypeError('options.ignoreEvents requires all values to be a number.');
+
+		if (this.ready && opts.tokens !== this.options.tokens) {
+			this.ws.send(JSON.stringify({
+				op: 0,
+				t: Date.now(),
+				d: { tokens: this.options.tokens },
+			}));
+		}
 
 		this._debug('Edited the Client\'s options.');
 		return this.options = opts;
