@@ -31,4 +31,4 @@ What simple.wspace has:
 
 ## Contributing
 
-- Find out [here](https://github.com/BLU-Shack/simple.wspace/blob/master/.github/CONTRIBUTING.md)!
+- Find out [here](https://github.com/BLU-Shack/servers.wspace/blob/master/.github/CONTRIBUTING.md)!
