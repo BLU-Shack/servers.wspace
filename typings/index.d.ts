@@ -23,18 +23,21 @@ declare module 'servers.wspace' {
 		public addListener(event: 'ready', listener: (readyAt: Date) => void): this;
 		public addListener(event: 'upvote', listener: (contents: UpvoteContents) => void): this;
 		public addListener(event: 'view', listener: (contents: ViewContents) => void): this;
+		public addListener(event: 'close', listener: (contents: { code: number, message: string }) => void): this;
 		public on(event: 'debug', listener: (...messages: string[]) => void): this;
 		public on(event: 'join', listener: (contents: JoinContents) => void): this;
 		public on(event: 'raw', listener: (data: object) => void): this;
 		public on(event: 'ready', listener: (readyAt: Date) => void): this;
 		public on(event: 'upvote', listener: (contents: UpvoteContents) => void): this;
 		public on(event: 'view', listener: (contents: ViewContents) => void): this;
+		public on(event: 'close', listener: (contents: { code: number, message: string }) => void): this;
 		public once(event: 'debug', listener: (...messages: string[]) => void): this;
 		public once(event: 'join', listener: (contents: JoinContents) => void): this;
 		public once(event: 'raw', listener: (data: object) => void): this;
 		public once(event: 'ready', listener: (readyAt: Date) => void): this;
 		public once(event: 'upvote', listener: (contents: UpvoteContents) => void): this;
 		public once(event: 'view', listener: (contents: ViewContents) => void): this;
+		public once(event: 'close', listener: (contents: { code: number, message: string }) => void): this;
 	}
 
 	type ClientOptions = {
