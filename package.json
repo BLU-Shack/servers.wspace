@@ -5,8 +5,8 @@
   "main": "src/",
   "types": "typings/index.d.ts",
   "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1",
-	"dev": "node private/dev.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node private/dev.js"
   },
   "repository": {
     "type": "git",
