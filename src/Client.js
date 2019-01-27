@@ -3,6 +3,11 @@ const EventEmitter = require('events');
 const PartialUser = require('./structures/PartialUser.js');
 const WebSocket = require('ws');
 
+/**
+ * @external WebSocket
+ * @see https://github.com/websockets/ws/blob/master/lib/websocket.js
+ */
+
 const Events = {
 	READY: 'ready',
 	CLOSE: 'close',
