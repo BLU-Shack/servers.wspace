@@ -87,7 +87,11 @@ class Client extends EventEmitter {
 						this._debug(this.ws.readyState, this.ws.OPEN);
 						return clearInterval(this.int);
 					}
-					this.ws.send(JSON.stringify(body));
+					this.ws.send(JSON.stringify({
+						op: 1,
+						t: Date.now(),
+						d: {}
+					}));
 					this.ws.ping(Date.now());
 					this._debug('WebSocket Ping and Heartbeat Check Performed.');
 				}, 45e3);
