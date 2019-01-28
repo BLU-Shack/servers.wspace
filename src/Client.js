@@ -161,7 +161,7 @@ class Client extends EventEmitter {
 					this._debug('Unrecognized Event\n\n', data);
 				}
 			})
-			.on('error', this._debug)
+			.on('error', e => this.emit('error', e))
 			.on('close', (code, message) => {
 				this.emit(Events.CLOSE, { code: code, message: message });
 				clearInterval(this.int);
