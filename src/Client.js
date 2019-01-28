@@ -8,6 +8,11 @@ const WebSocket = require('ws');
  * @see https://github.com/websockets/ws/blob/master/lib/websocket.js
  */
 
+/**
+ * @external Guild
+ * @see https://github.com/BLU-Shack/servers.space/blob/master/src/structures/Guild.js
+ */
+
 const Events = {
 	READY: 'ready',
 	CLOSE: 'close',
@@ -152,6 +157,8 @@ class Client extends EventEmitter {
 					};
 
 					this.emit('upvote', upvote);
+				} else {
+					this._debug('Unrecognized Event\n\n', data);
 				}
 			})
 			.on('error', this._debug)
@@ -221,7 +228,10 @@ class Client extends EventEmitter {
 				op: 0,
 				t: Date.now(),
 				d: { tokens: this.options.tokens },
-			}));
+			}), e => {
+				if (e) this.emit('error', e);
+				else this._debug('Updated Guild API Tokens - ');
+			});
 		}
 
 		this._debug('Edited the Client\'s options.');
