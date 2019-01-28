@@ -102,7 +102,7 @@ class Client extends EventEmitter {
 				this.emit('raw', data);
 
 				for (const i of this.options.ignoreEvents) {
-					if (data.op === i) return this._debug(`Event ${i} (${Codes[i]}) Disabled, Won't Emit Event`);
+					if (data.op === i) return this._debug(`Event ${i} (${Codes[i] || 'UNKNOWN_EVENT'}) Disabled, Won't Emit Event`);
 				}
 
 				if (data.op === 2) {
