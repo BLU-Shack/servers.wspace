@@ -137,7 +137,7 @@ class Client extends EventEmitter {
 					 * @typedef {object} UpvoteContents
 					 * @property {Guild} [guild] The guild that was upvoted.
 					 * @property {string} guildID The guild's Discord ID.
-					 * @property {PartialUser} user The user that upvoted the bot.
+					 * @property {PartialUser} user The user that upvoted the guild.
 					 * @property {string} userID The user's Discord ID.
 					 * @property {number} timestamp The timestamp of when the upvote took place.
 					 */
@@ -211,7 +211,7 @@ class Client extends EventEmitter {
 		if (typeof opts.raw !== 'boolean') throw new TypeError('options.raw must be boolean.');
 		if (typeof opts.fetch !== 'boolean') throw new TypeError('options.fetch must be boolean.');
 		if (!Array.isArray(opts.tokens)) throw new TypeError('options.tokens must be an array.');
-		if (!opts.tokens.length) throw new SyntaxError('options.tokens must include at least 1 bot token provided from botlist.space.');
+		if (!opts.tokens.length) throw new SyntaxError('options.tokens must include at least 1 guild token provided from serverlist.space.');
 		if (opts.tokens.some(i => typeof i !== 'string')) throw new TypeError('options.tokens requires all values to be a string.');
 		if (!Array.isArray(options.ignoreEvents)) throw new TypeError('options.ignoreEvents must be an array.');
 		if (opts.ignoreEvents.some(i => typeof i !== 'number')) throw new TypeError('options.ignoreEvents requires all values to be a number.');
