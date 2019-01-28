@@ -133,6 +133,14 @@ class Client extends EventEmitter {
 
 					this.emit('join', click);
 				} else if (data.op === 4) {
+					/**
+					 * @typedef {object} UpvoteContents
+					 * @property {Guild} [guild] The guild that was upvoted.
+					 * @property {string} guildID The guild's Discord ID.
+					 * @property {PartialUser} user The user that upvoted the bot.
+					 * @property {string} userID The user's Discord ID.
+					 * @property {number} timestamp The timestamp of when the upvote took place.
+					 */
 					const upvote = {
 						timestamp: data.t,
 						guild: this.options.fetch
